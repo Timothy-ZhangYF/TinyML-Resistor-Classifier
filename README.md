@@ -1,9 +1,10 @@
-# TinyML-Resistor-Classifier
+ TinyML-Resistor-Classifier
 
 [![Board](https://img.shields.io/badge/Board-Seeed%20XIAO%20ESP32S3%20Sense-brightgreen)](https://www.seeedstudio.com/XIAO-ESP32S3-Sense-p-5639.html)
 [![Framework](https://img.shields.io/badge/ML-TensorFlow%20Lite%20Micro-orange)](https://www.tensorflow.org/lite/microcontrollers)
-[![Model](https://img.shields.io/badge/Model-MobileNetV2%20%CE%B1%3D0.50-informational-yellow)]()
+[![Model](https://img.shields.io/badge/Model-MobileNetV2%20%CE%B1%3D0.50-yellow)]()
 [![Accuracy](https://img.shields.io/badge/INT8%20Accuracy-99.74%25-blue)]()
+
 
 An end-to-end TinyML edge vision system designed to automate resistor identification and sorting in electronics laboratories. Powered by an **XIAO ESP32S3 Sense**, **MobileNetV2 (α = 0.50)**, and **TFLite Micro**, the system performs real-time optical resistor classification directly on microcontrollers in **~1.2 seconds**.
 
