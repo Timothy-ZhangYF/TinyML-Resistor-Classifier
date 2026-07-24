@@ -84,6 +84,8 @@ The finalized INT8 quantized model achieved **99.74% accuracy** on test datasets
   <img src="Training/Results/train_fast.png" alt="Training Metrics" width="67%" />
   <img src="Training/Results/confusion_matrix.png" alt="Confusion Matrix" width="29%" />
 </p>
+
+
 ---
 
 ## Authors & Acknowledgments
