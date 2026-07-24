@@ -2,6 +2,6 @@
 to do
 ## Demo
 
-Manufactured PCB with all components soldered:
-
-<p align="center"><img src="Images/Demo.gif alt="Manufactured PCB with all components soldered" width="60%"></p>
+<p align="center">
+  <img src="Images/Demo.gif" width="60%" alt="Demo Animation">
+</p>
