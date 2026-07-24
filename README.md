@@ -9,11 +9,13 @@ An end-to-end TinyML edge vision system designed to automate resistor identifica
 
 ---
 
-## Demo
+## 🎬 Hardware Demonstration
 
-Working demonstration of the 10-class resistor classifier running an esp32
+> **Real-time inference running on Seeed XIAO ESP32S3 Sense (~1.2s latency, 99.74% accuracy):**
 
 https://github.com/user-attachments/assets/1d65bf31-cd97-47a0-a1eb-eec64f69841b
+
+*Captured live with top-mounted SPI display outputting predicted resistance class and model confidence score.*
 
 ---
 
