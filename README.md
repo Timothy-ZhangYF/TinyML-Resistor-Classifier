@@ -48,7 +48,7 @@ Standard computer vision solutions often rely on high-resolution cloud processin
 
 ---
 
-## Dataset & Engineering Strategy
+## Dataset Construction
 
 Because deployable micro-cameras yield noisy, out-of-focus, or lower-quality images compared to high-end benchmark datasets, we collected a custom **3,765-image dataset** matching the exact deployment setup:
 
@@ -73,14 +73,17 @@ Rather than using frozen transfer learning weights (which bottlenecked post-quan
 ![Model Summary](Training/Results/model_summary.png)
 
 
+
 ---
 
 ## Performance & Results
 
 The finalized INT8 quantized model achieved **99.74% accuracy** on test datasets, demonstrating near-perfect class separation across identical-looking component packages.
 
-![Confusion Matrix](Training/Results/confusion_matrix.png)
-
+<p label="Model Training Metrics and Confusion Matrix" align="center">
+  <img src="Training/Results/train_fast.png" alt="Training Metrics" width="67%" />
+  <img src="Training/Results/confusion_matrix.png" alt="Confusion Matrix" width="29%" />
+</p>
 ---
 
 ## Authors & Acknowledgments
