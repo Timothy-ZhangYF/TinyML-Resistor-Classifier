@@ -52,10 +52,12 @@ Standard computer vision solutions often rely on high-resolution cloud processin
 
 Because deployable micro-cameras yield noisy, out-of-focus, or lower-quality images compared to high-end benchmark datasets, we collected a custom **3,765-image dataset** matching the exact deployment setup:
 
-* **Capture Environment:** Captured using the native **OV3660** sensor at `FRAMESIZE_QVGA` ($320 	imes 240$), capturing identical focal distance, lighting, and shadow variations as inference time.
-* **Class Breakdown:** Covers 9 distinct 4-band resistor classes (including $10	imes$ multiplier pairs with 3 identical bands to test color granularity) plus 1 `Idle` (no resistor) state.
-  * **Classes:** $47\Omega$, $220\Omega$, $390\Omega$, $1.5	ext{k}\Omega$, $5.6	ext{k}\Omega$, $6.8	ext{k}\Omega$, $180	ext{k}\Omega$, $560	ext{k}\Omega$, $4.7	ext{M}\Omega$, `Idle`
+* **Capture Environment:** Captured using the native **OV3660** sensor at `FRAMESIZE_QVGA` ($320*240$), capturing identical focal distance, lighting, and shadow variations as inference time.
+* **Class Breakdown:** 9 distinct resistor classes (including 10x multiplier pairs with 3 identical bands to test color granularity) plus 1 `Idle` (no resistor) state.
+  * **Classes:** $47\Omega$, $220\Omega$, $390\Omega$, $1.5k\Omega$, $5.6k\Omega$, $6.8k\Omega$, $180k\Omega$, $560k\Omega$, $4.7M\Omega$
 * **Data Augmentation & Diversity:** Automated script logged 100 images per run over Serial at 1s intervals across varying rotations, offsets, leg-bend configurations, and lighting setups.
+
+![Data Collection Process](Images/data_collection.png)
 
 ---
 
