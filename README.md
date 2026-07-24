@@ -3,5 +3,5 @@ to do
 ## Demo
 
 <p align="center">
-  <img src="Images/Demo.gif" width="60%" alt="Demo Animation">
+  <img src="Images/Demo.gif" width="80%" alt="Demo Animation">
 </p>
