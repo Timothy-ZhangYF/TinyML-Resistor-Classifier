@@ -98,7 +98,7 @@ Non-trainable params: 18,544 (72.44 KB)
 
 The finalized INT8 quantized model achieved **99.74% accuracy** on test datasets, demonstrating near-perfect class separation across identical-looking component packages.
 
-![Data Collection Process](Training/Results/confusion_matrix.PNG)
+![Data Collection Process](Training/Results/confusion_matrix.png)
 
 ---
 
