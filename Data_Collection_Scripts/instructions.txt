@@ -1,0 +1,5 @@
+Upload main.cpp onto the Xiao ESP32 sens
+
+Define serial port in capt_w.py
+
+Run capt_w.py, this will start capture of 100 images in 1s intervals and save image into downloads/dataset
