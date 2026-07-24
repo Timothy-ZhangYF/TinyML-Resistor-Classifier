@@ -63,34 +63,15 @@ Because deployable micro-cameras yield noisy, out-of-focus, or lower-quality ima
 
 ## Model Architecture & Edge Optimization
 
-Rather than using frozen transfer learning weights (which bottlenecked post-quantization accuracy to ~77%), the model features a full end-to-end retraining of MobileNetV2 feature extraction layers adapted for micro-vision:
+Rather than using frozen transfer learning weights (which bottlenecked post-quantization accuracy to ~77%), the model features a full end-to-end retraining of MobileNetV2 feature extraction layers as the resistor dataset is highly domain-specific. The architecture is as follows:
 
 1. **Feature Extractor:** MobileNetV2 with width multiplier **$ lpha = 0.50$** (Input: $224 	imes 224 	imes 3$).
 2. **Pooling & Regularization:** Global Average Pooling 2D + $0.35$ Dropout rate.
 3. **Classification Layer:** Single Dense layer outputting 10 logits.
 4. **Quantization:** Full integer 8-bit (`INT8`) quantization for microcontroller RAM/Flash efficiency.
 
-```
-Model Summary (MobileNetV2 α=0.50):
-=================================================================
-Layer (type)                 Output Shape              Param #   
-=================================================================
-mobilenetv2_0.50_224         (None, 7, 7, 1280)        706,224   
-global_average_pooling2d     (None, 1280)              0         
-dropout                      (None, 1280)              0         
-dense                        (None, 10)                12,810    
-=================================================================
-Total params: 719,034 (2.74 MB)
-Trainable params: 700,490 (2.67 MB)
-Non-trainable params: 18,544 (72.44 KB)
-```
+![Model Summary](Training/Results/model_summary.png)
 
-### Trade-off Evaluation
-
-| Architecture | Model Parameters | INT8 Quantized Accuracy | Hardware Inference Time | Trade-off Notes |
-| :--- | :--- | :--- | :--- | :--- |
-| **MobileNetV2 (α = 0.35)** | ~423K | 98.69% | **~0.9 s** | Faster, but lower confidence on difficult classes (e.g. $4.7	ext{M}\Omega$) |
-| **MobileNetV2 (α = 0.50)** | **~719K** | **99.74%** | **~1.2 s** | **Selected**: Superior confidence and robustness across all classes |
 
 ---
 
@@ -98,7 +79,7 @@ Non-trainable params: 18,544 (72.44 KB)
 
 The finalized INT8 quantized model achieved **99.74% accuracy** on test datasets, demonstrating near-perfect class separation across identical-looking component packages.
 
-![Data Collection Process](Training/Results/confusion_matrix.png)
+![Confusion Matrix](Training/Results/confusion_matrix.png)
 
 ---
 
