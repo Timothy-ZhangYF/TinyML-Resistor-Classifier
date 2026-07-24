@@ -4,6 +4,5 @@ to do
 
 Working demonstration of the 10-class resistor classifier running an esp32
 
-
-https://github.com/user-attachments/assets/8d79d372-7b7c-489f-ad74-d2b90eb662ab
+https://github.com/user-attachments/assets/1d65bf31-cd97-47a0-a1eb-eec64f69841b
 
