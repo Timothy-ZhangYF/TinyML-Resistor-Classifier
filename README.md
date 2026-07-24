@@ -15,7 +15,7 @@ An end-to-end TinyML edge vision system designed to automate resistor identifica
 
 https://github.com/user-attachments/assets/1d65bf31-cd97-47a0-a1eb-eec64f69841b
 
-*Captured live with top-mounted SPI display outputting predicted resistance class and model confidence score.*
+*Captured live with top-mounted SPI display outputting predicted resistance class and model confidence score (video playback is sped up 3x).* 
 
 ---
 
