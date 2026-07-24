@@ -5,12 +5,11 @@
 [![Model](https://img.shields.io/badge/Model-MobileNetV2%20%CE%B1%3D0.50-yellow)]()
 [![Accuracy](https://img.shields.io/badge/INT8%20Accuracy-99.74%25-blue)]()
 
-
 An end-to-end TinyML edge vision system designed to automate resistor identification and sorting in electronics laboratories. Powered by an **XIAO ESP32S3 Sense**, **MobileNetV2 (α = 0.50)**, and **TFLite Micro**, the system performs real-time optical resistor classification directly on microcontrollers in **~1.2 seconds**.
 
 ---
 
-## 🎬 Hardware Demonstration
+## Hardware Demonstration
 
 > **Real-time inference running on Seeed XIAO ESP32S3 Sense (~1.2s latency, 99.74% accuracy):**
 
@@ -20,7 +19,7 @@ https://github.com/user-attachments/assets/1d65bf31-cd97-47a0-a1eb-eec64f69841b
 
 ---
 
-## 📌 Problem & Context
+## Problem & Context
 
 In university and maker electronics labs, sorting loose 4-band resistors is a notoriously tedious process. Because manual verification using digital multimeters (DMM) takes significant time, components frequently end up mixed in wrong bins or discarded. Misidentified resistors lead to circuit malfunctioning or board damage.
 
@@ -28,7 +27,7 @@ Standard computer vision solutions often rely on high-resolution cloud processin
 
 ---
 
-## 🛠 Hardware Architecture & System Setup
+## Hardware Architecture & System Setup
 
 | Component | Specification / Function |
 | :--- | :--- |
@@ -62,7 +61,7 @@ Standard computer vision solutions often rely on high-resolution cloud processin
 
 ---
 
-## 📊 Dataset & Engineering Strategy
+## Dataset & Engineering Strategy
 
 Because deployable micro-cameras yield noisy, out-of-focus, or lower-quality images compared to high-end benchmark datasets, we collected a custom **3,765-image dataset** matching the exact deployment setup:
 
@@ -73,7 +72,7 @@ Because deployable micro-cameras yield noisy, out-of-focus, or lower-quality ima
 
 ---
 
-## 🧠 Model Architecture & Edge Optimization
+## Model Architecture & Edge Optimization
 
 Rather than using frozen transfer learning weights (which bottlenecked post-quantization accuracy to ~77%), the model features a full end-to-end retraining of MobileNetV2 feature extraction layers adapted for micro-vision:
 
@@ -106,7 +105,7 @@ Non-trainable params: 18,544 (72.44 KB)
 
 ---
 
-## 📈 Performance & Results
+## Performance & Results
 
 The finalized INT8 quantized model achieved **99.74% accuracy** on test datasets, demonstrating near-perfect class separation across identical-looking component packages.
 
@@ -127,7 +126,7 @@ TFLite INT8 Confusion Matrix (381 Test Samples):
 
 ---
 
-## 🚀 Repository Structure
+## Repository Structure
 
 ```
 .
@@ -145,7 +144,7 @@ TFLite INT8 Confusion Matrix (381 Test Samples):
 
 ---
 
-## ⚡ Quickstart & Deployment
+## Quickstart & Deployment
 
 1. **Firmware Setup:**
    * Open the `firmware/` directory in **VSCode** with **PlatformIO** installed.
@@ -160,6 +159,6 @@ TFLite INT8 Confusion Matrix (381 Test Samples):
 
 ---
 
-## 👥 Authors & Acknowledgments
+## Authors & Acknowledgments
 
 * **Timothy Zhang** & **James Steeman** – Developed for *ESE3600: Tiny Machine Learning*.
