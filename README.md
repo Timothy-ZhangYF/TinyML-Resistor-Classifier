@@ -36,28 +36,15 @@ Standard computer vision solutions often rely on high-resolution cloud processin
 | **Enclosure / Rig** | Custom standoffs calibrated to fix camera distance, enhancing inference consistency |
 | **Firmware Stack** | C++ compiled via PlatformIO / VSCode, leveraging TFLite Micro C++ runtime |
 
-```
-+-------------------------------------------------------------+
-|                     Ohm Sweet Ohm Rig                       |
-|                                                             |
-|   +-----------------------------------------------------+   |
-|   |         Adafruit ST7735R Display (SPI)             |   |
-|   |         Outputs: Resistor Class + Confidence        |   |
-|   +-----------------------------------------------------+   |
-|                              ^                              |
-|                              | (SPI Output)                 |
-|   +-----------------------------------------------------+   |
-|   |           XIAO ESP32S3 Sense Microcontroller        |   |
-|   |   - Captures QVGA (320x240) image via OV3660        |   |
-|   |   - Rescales & normalizes image tensor              |   |
-|   |   - Runs INT8 Quantized TFLite Micro Model          |   |
-|   +-----------------------------------------------------+   |
-|                              |                              |
-|             (Fixed Height Mounting Standoffs)               |
-|                              v                              |
-|                    [ Target Resistor ]                      |
-+-------------------------------------------------------------+
-```
+### Physical Assembly
+*Physical hardware rig featuring the Seeed XIAO ESP32S3 Sense, custom mounting standoffs, and top-mounted Adafruit SPI display.*
+
+![Physical Hardware Rig](Images/Hardware.png)
+
+### System Block Diagram
+*Hardware and data flow pipeline illustrating image acquisition, tensor normalization, on-chip INT8 TFLite Micro inference, and SPI display output.*
+
+![System Block Diagram](Images/System.png)
 
 ---
 
@@ -65,9 +52,9 @@ Standard computer vision solutions often rely on high-resolution cloud processin
 
 Because deployable micro-cameras yield noisy, out-of-focus, or lower-quality images compared to high-end benchmark datasets, we collected a custom **3,765-image dataset** matching the exact deployment setup:
 
-* **Capture Environment:** Captured using the native **OV3660** sensor at `FRAMESIZE_QVGA` ($320 \times 240$), capturing identical focal distance, lighting, and shadow variations as inference time.
-* **Class Breakdown:** Covers 9 distinct 4-band resistor classes (including $10\times$ multiplier pairs with 3 identical bands to test color granularity) plus 1 `Idle` (no resistor) state.
-  * **Classes:** $47\Omega$, $220\Omega$, $390\Omega$, $1.5\text{k}\Omega$, $5.6\text{k}\Omega$, $6.8\text{k}\Omega$, $180\text{k}\Omega$, $560\text{k}\Omega$, $4.7\text{M}\Omega$, `Idle`
+* **Capture Environment:** Captured using the native **OV3660** sensor at `FRAMESIZE_QVGA` ($320 	imes 240$), capturing identical focal distance, lighting, and shadow variations as inference time.
+* **Class Breakdown:** Covers 9 distinct 4-band resistor classes (including $10	imes$ multiplier pairs with 3 identical bands to test color granularity) plus 1 `Idle` (no resistor) state.
+  * **Classes:** $47\Omega$, $220\Omega$, $390\Omega$, $1.5	ext{k}\Omega$, $5.6	ext{k}\Omega$, $6.8	ext{k}\Omega$, $180	ext{k}\Omega$, $560	ext{k}\Omega$, $4.7	ext{M}\Omega$, `Idle`
 * **Data Augmentation & Diversity:** Automated script logged 100 images per run over Serial at 1s intervals across varying rotations, offsets, leg-bend configurations, and lighting setups.
 
 ---
@@ -76,7 +63,7 @@ Because deployable micro-cameras yield noisy, out-of-focus, or lower-quality ima
 
 Rather than using frozen transfer learning weights (which bottlenecked post-quantization accuracy to ~77%), the model features a full end-to-end retraining of MobileNetV2 feature extraction layers adapted for micro-vision:
 
-1. **Feature Extractor:** MobileNetV2 with width multiplier **$\alpha = 0.50$** (Input: $224 \times 224 \times 3$).
+1. **Feature Extractor:** MobileNetV2 with width multiplier **$ lpha = 0.50$** (Input: $224 	imes 224 	imes 3$).
 2. **Pooling & Regularization:** Global Average Pooling 2D + $0.35$ Dropout rate.
 3. **Classification Layer:** Single Dense layer outputting 10 logits.
 4. **Quantization:** Full integer 8-bit (`INT8`) quantization for microcontroller RAM/Flash efficiency.
@@ -100,7 +87,7 @@ Non-trainable params: 18,544 (72.44 KB)
 
 | Architecture | Model Parameters | INT8 Quantized Accuracy | Hardware Inference Time | Trade-off Notes |
 | :--- | :--- | :--- | :--- | :--- |
-| **MobileNetV2 (α = 0.35)** | ~423K | 98.69% | **~0.9 s** | Faster, but lower confidence on difficult classes (e.g. $4.7\text{M}\Omega$) |
+| **MobileNetV2 (α = 0.35)** | ~423K | 98.69% | **~0.9 s** | Faster, but lower confidence on difficult classes (e.g. $4.7	ext{M}\Omega$) |
 | **MobileNetV2 (α = 0.50)** | **~719K** | **99.74%** | **~1.2 s** | **Selected**: Superior confidence and robustness across all classes |
 
 ---
