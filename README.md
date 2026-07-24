@@ -98,53 +98,7 @@ Non-trainable params: 18,544 (72.44 KB)
 
 The finalized INT8 quantized model achieved **99.74% accuracy** on test datasets, demonstrating near-perfect class separation across identical-looking component packages.
 
-```
-TFLite INT8 Confusion Matrix (381 Test Samples):
-       0   1   2   3   4   5   6   7   8   9  (Predicted)
- 0   [40   0   0   0   0   0   0   0   0   0]  (47 Ω)
- 1   [ 0  38   0   0   0   0   0   0   0   0]  (220 Ω)
- 2   [ 0   0  35   0   0   0   0   0   0   0]  (390 Ω)
- 3   [ 0   0   0  37   0   0   0   0   0   0]  (1.5 kΩ)
- 4   [ 0   0   0   0  38   0   0   0   0   0]  (5.6 kΩ)
- 5   [ 0   0   0   1   0  34   0   0   0   0]  (6.8 kΩ)
- 6   [ 0   0   0   0   0   0  38   0   0   0]  (180 kΩ)
- 7   [ 0   0   0   0   0   0   0  40   0   0]  (560 kΩ)
- 8   [ 0   0   0   0   0   0   0   0  40   0]  (4.7 MΩ)
- 9   [ 0   0   0   0   0   0   0   0   0  40]  (Idle)
-```
-
----
-
-## Repository Structure
-
-```
-.
-├── firmware/                   # PlatformIO C++ firmware project
-│   ├── src/
-│   │   ├── main.cpp            # Application logic & display SPI drivers
-│   │   └── model.cc            # Exported TFLite Micro INT8 model byte array
-│   └── platformio.ini          # ESP32S3 environment & lib dependencies
-├── models/                     # Notebooks & exported models
-│   ├── train_mobilenet.ipynb   # Dataset loader, full training & quantization pipeline
-│   └── resistor_model_int8.tflite
-├── dataset/                    # Sample images and structure
-└── docs/                       # Assembly photos & schematic diagrams
-```
-
----
-
-## Quickstart & Deployment
-
-1. **Firmware Setup:**
-   * Open the `firmware/` directory in **VSCode** with **PlatformIO** installed.
-   * Build and flash the project onto your Seeed XIAO ESP32S3 Sense:
-     ```bash
-     pio run --target upload
-     ```
-
-2. **Model Training & Quantization:**
-   * Launch `models/train_mobilenet.ipynb` in Google Colab or Jupyter.
-   * Run all cells to train the MobileNetV2 backbone, evaluate accuracy, export INT8 `.tflite`, and generate C++ byte array headers (`model.cc`).
+![Data Collection Process](Training/Results/confusion_matrix.PNG)
 
 ---
 
